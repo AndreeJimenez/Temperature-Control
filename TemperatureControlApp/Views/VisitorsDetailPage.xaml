@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converter="clr-namespace:TemperatureControlApp.Converters"
+             mc:Ignorable="d"
+             x:Class="TemperatureControlApp.Views.VisitorsDetailPage"
+             Title="Visitor Detail">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:ImageConverter x:Key="ImageConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Delete" Command="{Binding DeleteCommand}" />
+        <ToolbarItem Text="Save" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <ActivityIndicator
+                    IsRunning="{Binding IsBusy}"
+                    d:IsRunning="True" />
+                <Entry 
+                    Placeholder="Name" 
+                    Text="{Binding VisitorSelected.Name}" />
+                <Entry 
+                    Placeholder="Age" 
+                    Text="{Binding VisitorSelected.Age}" />
+                <Entry 
+                    Placeholder="Gender" 
+                    Text="{Binding VisitorSelected.Gender}" />
+                <Image
+                    Source="{Binding ImageBase64, Converter={StaticResource ImageConverter}}" />
+                <Button
+                    Text="Take Picture"
+                    Command="{Binding TakePictureCommand}" />
+                <Button
+                    Text="Select Picture"
+                    Command="{Binding SelectPictureCommand}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
