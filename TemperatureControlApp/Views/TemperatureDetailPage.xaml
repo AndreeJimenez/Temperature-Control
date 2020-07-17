@@ -34,6 +34,18 @@
                 </OnPlatform>
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
+        <ToolbarItem 
+            Text="Map" 
+            Command="{Binding MapCommand}" >
+            <ToolbarItem.IconImageSource>
+            <OnPlatform
+                    x:TypeArguments="ImageSource">
+                <On
+                        Platform="Android, UWP"
+                        Value="location.png" />
+            </OnPlatform>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>

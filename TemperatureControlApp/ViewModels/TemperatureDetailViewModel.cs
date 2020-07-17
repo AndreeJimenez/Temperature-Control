@@ -4,6 +4,7 @@ using Plugin.Media;
 using System;
 using Xamarin.Forms;
 using Xamarin.Essentials;
+using TemperatureControlApp.Views;
 
 namespace TemperatureControlApp.ViewModels
 {
@@ -17,6 +18,9 @@ namespace TemperatureControlApp.ViewModels
 
         Command _GetLocationCommand;
         public Command GetLocationCommand => _GetLocationCommand ?? (_GetLocationCommand = new Command(GetLocationAction));
+
+        Command _mapCommand;
+        public Command MapCommand => _mapCommand ?? (_mapCommand = new Command(MapAction));
 
         TemperatureModel temperatureSelected;
         public TemperatureModel TemperatureSelected
@@ -91,6 +95,18 @@ namespace TemperatureControlApp.ViewModels
             {
                 throw ex;
             }
+        }
+
+        private void MapAction()
+        {
+            Application.Current.MainPage.Navigation.PushModalAsync(new TemperatureMapPage(new TemperatureModel
+            {
+                ID = TemperatureSelected.ID,
+                Temperature = TemperatureSelected.Temperature,
+                Comments = TemperatureSelected.Comments,
+                Latitude = TemperatureSelected.Latitude,
+                Longitude = TemperatureSelected.Longitude,
+            }));
         }
     }
 }

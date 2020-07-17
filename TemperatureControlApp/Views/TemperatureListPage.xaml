@@ -16,7 +16,7 @@
                     x:TypeArguments="ImageSource">
                     <On
                         Platform="Android, UWP"
-                        Value="add.png" />
+                        Value="addTemp.png" />
                 </OnPlatform>
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
