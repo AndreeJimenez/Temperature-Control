@@ -1,6 +1,7 @@
 ﻿using System;
 using TemperatureControlApp.Models;
 using TemperatureControlApp.ViewModels;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,6 +10,9 @@ namespace TemperatureControlApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TemperatureDetailPage : ContentPage
     {
+        public double Latitude;
+        public double Longitude;
+
         public TemperatureDetailPage()
         {
             InitializeComponent();

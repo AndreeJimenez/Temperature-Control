@@ -43,18 +43,18 @@
                     IsRunning="{Binding IsBusy}"
                     d:IsRunning="True" />
                 <DatePicker 
-                    MinimumDate="01/01/2018"
-                    MaximumDate="12/31/2022"
-                    Date="07/17/2020" />
+                    MinimumDate="01/01/2015"
+                    MaximumDate="12/31/2030"
+                    Date="{Binding TemperatureSelected.Date}"/>
                 <Entry 
-                    Placeholder="Age" 
+                    Placeholder="Temperature" 
                     Text="{Binding TemperatureSelected.Temperature}" />
                 <Entry
                     Placeholder="Latitud"
-                    Text="{Binding PetSelected.Latitude}" />
+                    Text="{Binding TemperatureSelected.Latitude}" />
                 <Entry
                     Placeholder="Longitud"
-                    Text="{Binding PetSelected.Longitude}" />
+                    Text="{Binding TemperatureSelected.Longitude}" />
                 <Button
                     Text="Get Location"
                     Command="{Binding GetLocationCommand}"
@@ -62,10 +62,11 @@
                     BackgroundColor="#fbbebd"
                     BorderColor="#faa4a3"
                     BorderWidth="1"/>
-                <Editor
+                <Entry
                     Placeholder="Comments"
-                    VerticalOptions="FillAndExpand"
-                    Text="{Binding Comments}" />
+                    HeightRequest="100"
+                    WidthRequest="130"
+                    Text="{Binding TemperatureSelected.Comments}" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

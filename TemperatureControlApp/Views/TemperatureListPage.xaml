@@ -10,7 +10,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem
             Text="Add"
-            Clicked="AddVisitor_Clicked">
+            Clicked="AddTemperature_Clicked">
             <ToolbarItem.IconImageSource>
                 <OnPlatform
                     x:TypeArguments="ImageSource">
@@ -42,20 +42,12 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                Text="{Binding Name}"
-                                d:Text="Name"
-                                TextColor="#0B3C5D"
-                                FontSize="Large" />
                             <Label
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 TextColor="#0B3C5D"
-                                Text="{Binding Date}"
+                                Text="{Binding Date, StringFormat='{0:dd MMM yy}'}"
                                 d:Text="Date"/>
                             <Label
                                 Grid.Row="2"

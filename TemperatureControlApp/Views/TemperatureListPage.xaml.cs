@@ -13,7 +13,7 @@ namespace TemperatureControlApp.Views
         {
             InitializeComponent();
 
-            BindingContext = new TemperatureListViewModel();
+            BindingContext = new TemperatureViewModel();
         }
 
         async void OnItemSelected(object sender, EventArgs args)

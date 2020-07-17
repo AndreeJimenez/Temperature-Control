@@ -3,6 +3,7 @@ using TemperatureControlApp.Services;
 using Plugin.Media;
 using System;
 using Xamarin.Forms;
+using Xamarin.Essentials;
 
 namespace TemperatureControlApp.ViewModels
 {
@@ -14,6 +15,9 @@ namespace TemperatureControlApp.ViewModels
         Command deleteCommand;
         public Command DeleteCommand => deleteCommand ?? (deleteCommand = new Command(DeleteAction));
 
+        Command _GetLocationCommand;
+        public Command GetLocationCommand => _GetLocationCommand ?? (_GetLocationCommand = new Command(GetLocationAction));
+
         TemperatureModel temperatureSelected;
         public TemperatureModel TemperatureSelected
         {
@@ -21,11 +25,11 @@ namespace TemperatureControlApp.ViewModels
             set => SetProperty(ref temperatureSelected, value);
         }
 
-        string _Name;
-        public string Name
+        int _ID;
+        public int ID
         {
-            get => _Name;
-            set => SetProperty(ref _Name, value);
+            get => _ID;
+            set => SetProperty(ref _ID, value);
         }
 
         DateTime _Date;
@@ -33,6 +37,20 @@ namespace TemperatureControlApp.ViewModels
         {
             get => _Date;
             set => SetProperty(ref _Date, value);
+        }
+
+        double _Latitude;
+        public double Latitude
+        {
+            get => _Latitude;
+            set => SetProperty(ref _Latitude, value);
+        }
+
+        double _Longitude;
+        public double Longitude
+        {
+            get => _Longitude;
+            set => SetProperty(ref _Longitude, value);
         }
 
         public TemperatureDetailViewModel()
@@ -55,6 +73,24 @@ namespace TemperatureControlApp.ViewModels
         {
             await App.Database.DeleteTemperatureAsync(TemperatureSelected);
             TemperatureViewModel.GetInstance().LoadTemperatures();
+        }
+
+        private async void GetLocationAction()
+        {
+            try
+            {
+                var location = await Geolocation.GetLastKnownLocationAsync();
+
+                if (location != null)
+                {
+                    temperatureSelected.Latitude = location.Latitude;
+                    temperatureSelected.Longitude = location.Longitude;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
