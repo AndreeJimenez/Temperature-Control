@@ -1,11 +1,8 @@
 ﻿using TemperatureControlApp.Models;
 using TemperatureControlApp.Services;
-using TemperatureControlApp.Views;
 using Plugin.Media;
 using System;
-using Xamarin.Essentials;
 using Xamarin.Forms;
-using System.Diagnostics;
 
 namespace TemperatureControlApp.ViewModels
 {
@@ -30,13 +27,6 @@ namespace TemperatureControlApp.ViewModels
             set => SetProperty(ref visitorSelected, value);
         }
 
-        ImageSource imageSource_;
-        public ImageSource ImageSource_
-        {
-            get => imageSource_;
-            set => SetProperty(ref imageSource_, value);
-        }
-
         string _ImageBase64;
         public string ImageBase64
         {
@@ -44,25 +34,11 @@ namespace TemperatureControlApp.ViewModels
             set => SetProperty(ref _ImageBase64, value);
         }
 
-        string _ImageUrl;
-        public string ImageUrl
-        {
-            get => _ImageUrl;
-            set => SetProperty(ref _ImageUrl, value);
-        }
-
         string _Name;
         public string Name
         {
             get => _Name;
             set => SetProperty(ref _Name, value);
-        }
-
-        DateTime _VisitorDate;
-        public DateTime VisitorDate
-        {
-            get => _VisitorDate;
-            set => SetProperty(ref _VisitorDate, value);
         }
 
         string _Gender;

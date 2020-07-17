@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="TemperatureControlApp.Views.TemperatureDetailPage"
+             Title="Temperature Detail">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Text="Delete" 
+            Clicked="DeleteItem_Clicked" 
+            Command="{Binding DeleteCommand}">
+            <ToolbarItem.IconImageSource>
+                <OnPlatform
+                    x:TypeArguments="ImageSource">
+                    <On
+                        Platform="Android, UWP"
+                        Value="delete.png" />
+                </OnPlatform>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem 
+            Text="Save" 
+            Clicked="AddItem_Clicked" 
+            Command="{Binding SaveCommand}" >
+            <ToolbarItem.IconImageSource>
+                <OnPlatform
+                    x:TypeArguments="ImageSource">
+                    <On
+                        Platform="Android, UWP"
+                        Value="plus.png" />
+                </OnPlatform>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <ActivityIndicator
+                    IsRunning="{Binding IsBusy}"
+                    d:IsRunning="True" />
+                <DatePicker 
+                    MinimumDate="01/01/2018"
+                    MaximumDate="12/31/2022"
+                    Date="07/17/2020" />
+                <Entry 
+                    Placeholder="Age" 
+                    Text="{Binding TemperatureSelected.Temperature}" />
+                <Entry
+                    Placeholder="Latitud"
+                    Text="{Binding PetSelected.Latitude}" />
+                <Entry
+                    Placeholder="Longitud"
+                    Text="{Binding PetSelected.Longitude}" />
+                <Button
+                    Text="Get Location"
+                    Command="{Binding GetLocationCommand}"
+                    TextColor="White"
+                    BackgroundColor="#fbbebd"
+                    BorderColor="#faa4a3"
+                    BorderWidth="1"/>
+                <Editor
+                    Placeholder="Comments"
+                    VerticalOptions="FillAndExpand"
+                    Text="{Binding Comments}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

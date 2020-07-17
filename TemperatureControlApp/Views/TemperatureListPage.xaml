@@ -5,12 +5,71 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="TemperatureControlApp.Views.TemperatureListPage"
-             Title="Temperature">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             Title="Temperature Record">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="Add"
+            Clicked="AddVisitor_Clicked">
+            <ToolbarItem.IconImageSource>
+                <OnPlatform
+                    x:TypeArguments="ImageSource">
+                    <On
+                        Platform="Android, UWP"
+                        Value="add.png" />
+                </OnPlatform>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <RefreshView 
+            IsRefreshing="{Binding IsBusy}"
+            Command="{Binding RefreshCommand}">
+        <CollectionView
+                SelectionMode="Single"
+                ItemsSource="{Binding Temperatures}"
+                SelectedItem="{Binding TemperatureSelected}"
+                SelectionChangedCommand="{Binding SelectCommand}"
+                x:Name="TemperaturesColView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Grid Padding="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="4*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Text="{Binding Name}"
+                                d:Text="Name"
+                                TextColor="#0B3C5D"
+                                FontSize="Large" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                TextColor="#0B3C5D"
+                                Text="{Binding Date}"
+                                d:Text="Date"/>
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                TextColor="#0B3C5D"
+                                Text="{Binding Temperature}"
+                                d:Text="Temperature"/>
+                        </Grid>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
 </ContentPage>

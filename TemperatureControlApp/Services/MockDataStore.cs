@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TemperatureControlApp.Models;
@@ -10,9 +9,7 @@ namespace TemperatureControlApp.Services
     {
         readonly List<VisitorModel> items;
 
-        public MockDataStore()
-        {
-        }
+        public MockDataStore() {}
 
         public async Task<bool> AddVisitorAsync(VisitorModel item)
         {

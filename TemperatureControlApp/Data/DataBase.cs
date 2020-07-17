@@ -45,14 +45,19 @@ namespace TemperatureControlApp.Data
             return Database.Table<VisitorModel>().ToListAsync();
         }
 
-        public Task<List<VisitorModel>> GetVisitorsNotDoneAsync()
+        public Task<List<TemperatureModel>> GetAllTemperaturesAsync()
         {
-            return Database.QueryAsync<VisitorModel>($"SELECT * FROM [{typeof(VisitorModel).Name}] WHERE [Done] = 0");
+            return Database.Table<TemperatureModel>().ToListAsync();
         }
 
         public Task<VisitorModel> GetVisitorAsync(int id)
         {
             return Database.Table<VisitorModel>().Where(i => i.ID == id).FirstOrDefaultAsync();
+        }
+
+        public Task<TemperatureModel> GetTemperatureAsync(int id)
+        {
+            return Database.Table<TemperatureModel>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
         public Task<int> SaveVisitorAsync(VisitorModel item)
@@ -67,9 +72,26 @@ namespace TemperatureControlApp.Data
             }
         }
 
+        public Task<int> SaveTemperatureAsync(TemperatureModel temperature)
+        {
+            if (temperature.ID != 0)
+            {
+                return Database.UpdateAsync(temperature);
+            }
+            else
+            {
+                return Database.InsertAsync(temperature);
+            }
+        }
+
         public Task<int> DeleteVisitorAsync(VisitorModel item)
         {
             return Database.DeleteAsync(item);
+        }
+
+        public Task<int> DeleteTemperatureAsync(TemperatureModel temperature)
+        {
+            return Database.DeleteAsync(temperature);
         }
     }
 }

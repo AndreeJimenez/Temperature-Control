@@ -1,27 +1,26 @@
 ﻿using System;
 using TemperatureControlApp.Models;
 using TemperatureControlApp.ViewModels;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace TemperatureControlApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class VisitorsDetailPage : ContentPage
+    public partial class TemperatureDetailPage : ContentPage
     {
-        public VisitorsDetailPage()
+        public TemperatureDetailPage()
         {
             InitializeComponent();
 
-            BindingContext = new VisitorsDetailViewModel();
+            BindingContext = new TemperatureDetailViewModel();
         }
 
-        public VisitorsDetailPage(VisitorsDetailViewModel visitorSelected)
+        public TemperatureDetailPage(TemperatureDetailViewModel temperatureSelected)
         {
             InitializeComponent();
 
-            BindingContext = visitorSelected;
+            BindingContext = temperatureSelected;
         }
 
         async void AddItem_Clicked(object sender, EventArgs e)
