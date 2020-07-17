@@ -3,53 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:converter="clr-namespace:TemperatureControlApp.Converters"
+            xmlns:converter="clr-namespace:TemperatureControlApp.Converters"
              mc:Ignorable="d"
              x:Class="TemperatureControlApp.Views.VisitorsListPage"
              Title="Visitors">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem
-            Text="Add"
-            Command="{Binding NewCommand}">
-            <ToolbarItem.IconImageSource>
-                <OnPlatform
-                    x:TypeArguments="ImageSource">
-                    <On
-                        Platform="Android, UWP"
-                        Value="add.png" />
-                </OnPlatform>
-            </ToolbarItem.IconImageSource>
-        </ToolbarItem>
-    </ContentPage.ToolbarItems>
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:ImageConverter x:Key="ImageConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ContentPage.Content>
-        <RefreshView 
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="Add"
+            Clicked="AddVisitor_Clicked">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <RefreshView 
             IsRefreshing="{Binding IsBusy}"
             Command="{Binding RefreshCommand}">
-            <CollectionView
+        <CollectionView
                 SelectionMode="Single"
                 ItemsSource="{Binding Visitors}"
                 SelectedItem="{Binding VisitorSelected}"
                 SelectionChangedCommand="{Binding SelectCommand}"
                 x:Name="VisitorsColView">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid
-                            Padding="5">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="3*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Image
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="5">
+                        <Image
                                 Grid.Row="0"
                                 Grid.Column="0"
                                 Grid.RowSpan="3"
@@ -58,31 +42,33 @@
                                 Aspect="AspectFill"
                                 VerticalOptions="CenterAndExpand"
                                 HorizontalOptions="CenterAndExpand"
-                                Source="{Binding ImageBase64, Converter={StaticResource ImageConverter}}"
+                                Source="{Binding ImageBase64}"
                                 d:Source="not_found" />
-                            <Label
+                        <Label
                                 Grid.Row="0"
                                 Grid.Column="1"
                                 Text="{Binding Name}"
                                 d:Text="Name"
                                 TextColor="#0B3C5D"
                                 FontSize="Large" />
-                            <Label
+                        <Label
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 TextColor="#0B3C5D"
                                 Text="{Binding Age}"
                                 d:Text="Age"/>
-                            <Label
+                        <Label
                                 Grid.Row="2"
                                 Grid.Column="1"
                                 TextColor="#0B3C5D"
                                 Text="{Binding Gender}"
                                 d:Text="Gender"/>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </RefreshView>
-    </ContentPage.Content>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
 </ContentPage>

@@ -12,20 +12,20 @@ namespace TemperatureControlApp.ViewModels
         Command refreshCommand;
         public Command RefreshCommand => refreshCommand ?? (refreshCommand = new Command(LoadVisitors));
 
-        Command _newCommand;
+        /*Command _newCommand;
         public Command NewCommand => _newCommand ?? (_newCommand = new Command(NewAction));
 
         Command _selectCommand;
-        public Command SelectCommand => _selectCommand ?? (_selectCommand = new Command(SelectAction));
+        public Command SelectCommand => _selectCommand ?? (_selectCommand = new Command(SelectAction));*/
 
-        List<VisitorModel> pets;
+        List<VisitorModel> visitors;
         public List<VisitorModel> Visitors
         {
-            get => pets;
-            set => SetProperty(ref pets, value);
+            get => visitors;
+            set => SetProperty(ref visitors, value);
         }
 
-        VisitorModel visitorSelected;
+        /*VisitorModel visitorSelected;
         public VisitorModel VisitorSelected
         {
             get => visitorSelected;
@@ -36,7 +36,7 @@ namespace TemperatureControlApp.ViewModels
                     SelectAction();
                 }
             }
-        }
+        }*/
 
         public VisitorsListViewModel()
         {
@@ -57,14 +57,14 @@ namespace TemperatureControlApp.ViewModels
             IsBusy = false;
         }
 
-        private void NewAction()
+        /*async private void NewAction()
         {
-            Application.Current.MainPage.Navigation.PushAsync(new VisitorsDetailPage());
+            await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new VisitorsDetailPage()));
         }
 
         private void SelectAction()
         {
             Application.Current.MainPage.Navigation.PushAsync(new VisitorsDetailPage(VisitorSelected));
-        }
+        }*/
     }
 }

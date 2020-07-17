@@ -5,6 +5,7 @@ using Plugin.Media;
 using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using System.Diagnostics;
 
 namespace TemperatureControlApp.ViewModels
 {
@@ -15,12 +16,6 @@ namespace TemperatureControlApp.ViewModels
 
         Command deleteCommand;
         public Command DeleteCommand => deleteCommand ?? (deleteCommand = new Command(DeleteAction));
-
-        //Command _mapCommand;
-        //public Command MapCommand => _mapCommand ?? (_mapCommand = new Command(MapAction));
-
-        //Command _GetLocationCommand;
-        //public Command GetLocationCommand => _GetLocationCommand ?? (_GetLocationCommand = new Command(GetLocationAction));
 
         Command _TakePictureCommand;
         public Command TakePictureCommand => _TakePictureCommand ?? (_TakePictureCommand = new Command(TakePictureAction));
@@ -83,8 +78,6 @@ namespace TemperatureControlApp.ViewModels
             VisitorSelected = new VisitorModel();
         }
 
-
-
         public VisitorsDetailViewModel(VisitorModel visitorSelected)
         {
             VisitorSelected = visitorSelected;
@@ -95,14 +88,12 @@ namespace TemperatureControlApp.ViewModels
         {
             await App.Database.SaveVisitorAsync(VisitorSelected);
             VisitorsListViewModel.GetInstance().LoadVisitors();
-            await Application.Current.MainPage.Navigation.PopAsync();
         }
 
         private async void DeleteAction()
         {
             await App.Database.DeleteVisitorAsync(VisitorSelected);
             VisitorsListViewModel.GetInstance().LoadVisitors();
-            await Application.Current.MainPage.Navigation.PopAsync();
         }
 
         private async void TakePictureAction()

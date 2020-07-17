@@ -20,6 +20,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\TemperatureListPage.xaml.cs">
+      <DependentUpon>TemperatureListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\VisitorsDetailPage.xaml.cs">
+      <DependentUpon>VisitorsDetailPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="Views\TemperatureListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

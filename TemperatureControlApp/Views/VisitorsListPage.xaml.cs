@@ -1,11 +1,12 @@
-﻿using TemperatureControlApp.ViewModels;
-
+﻿using System;
+using System.ComponentModel;
+using TemperatureControlApp.Models;
+using TemperatureControlApp.ViewModels;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace TemperatureControlApp.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    [DesignTimeVisible(false)]
     public partial class VisitorsListPage : ContentPage
     {
         public VisitorsListPage()
@@ -13,6 +14,18 @@ namespace TemperatureControlApp.Views
             InitializeComponent();
 
             BindingContext = new VisitorsListViewModel();
+        }
+
+        async void OnItemSelected(object sender, EventArgs args)
+        {
+            var layout = (BindableObject)sender;
+            var item = (VisitorModel)layout.BindingContext;
+            await Navigation.PushAsync(new VisitorsDetailPage(new VisitorsDetailViewModel(item)));
+        }
+
+        async void AddVisitor_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NavigationPage(new VisitorsDetailPage()));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using TemperatureControlApp.Models;
+﻿using System;
+using TemperatureControlApp.Models;
 using TemperatureControlApp.ViewModels;
 
 using Xamarin.Forms;
@@ -16,11 +17,23 @@ namespace TemperatureControlApp.Views
             BindingContext = new VisitorsDetailViewModel();
         }
 
-        public VisitorsDetailPage(VisitorModel visitorSelected)
+        public VisitorsDetailPage(VisitorsDetailViewModel visitorSelected)
         {
             InitializeComponent();
 
-            BindingContext = new VisitorsDetailViewModel(visitorSelected);
+            BindingContext = visitorSelected;
+        }
+
+        public VisitorModel VisitorSelected;
+
+        async void AddItem_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
+
+        async void DeleteItem_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
         }
     }
 }
