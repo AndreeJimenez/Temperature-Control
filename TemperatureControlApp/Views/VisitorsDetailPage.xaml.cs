@@ -35,5 +35,10 @@ namespace TemperatureControlApp.Views
         {
             await Navigation.PopAsync();
         }
+
+        async void Back_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
     }
 }

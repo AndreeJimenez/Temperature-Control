@@ -18,6 +18,14 @@
         <ToolbarItem
             Text="Add"
             Clicked="AddVisitor_Clicked">
+            <ToolbarItem.IconImageSource>
+                <OnPlatform
+                    x:TypeArguments="ImageSource">
+                    <On
+                        Platform="Android, UWP"
+                        Value="add.png" />
+                </OnPlatform>
+            </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 

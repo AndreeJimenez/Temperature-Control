@@ -15,8 +15,32 @@
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Delete" Clicked="DeleteItem_Clicked" Command="{Binding DeleteCommand}" />
-        <ToolbarItem Text="Save" Clicked="AddItem_Clicked" Command="{Binding SaveCommand}" />
+        <ToolbarItem 
+            Text="Delete" 
+            Clicked="DeleteItem_Clicked" 
+            Command="{Binding DeleteCommand}">
+            <ToolbarItem.IconImageSource>
+                <OnPlatform
+                    x:TypeArguments="ImageSource">
+                    <On
+                        Platform="Android, UWP"
+                        Value="delete.png" />
+                </OnPlatform>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem 
+            Text="Save" 
+            Clicked="AddItem_Clicked" 
+            Command="{Binding SaveCommand}" >
+            <ToolbarItem.IconImageSource>
+                <OnPlatform
+                    x:TypeArguments="ImageSource">
+                    <On
+                        Platform="Android, UWP"
+                        Value="plus.png" />
+                </OnPlatform>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>

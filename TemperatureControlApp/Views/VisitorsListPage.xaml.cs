@@ -25,7 +25,7 @@ namespace TemperatureControlApp.Views
 
         async void AddVisitor_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NavigationPage(new VisitorsDetailPage()));
+            await Navigation.PushAsync(new VisitorsDetailPage());
         }
     }
 }

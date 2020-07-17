@@ -9,7 +9,7 @@ namespace TemperatureControlApp.Models
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
 
-        public DateTime PetDate { get; set; }
+        public DateTime Date { get; set; }
 
         public double Temperature { get; set; }
 
