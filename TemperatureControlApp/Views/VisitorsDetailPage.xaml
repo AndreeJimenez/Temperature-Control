@@ -3,9 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converter="clr-namespace:TemperatureControlApp.Converters"
              mc:Ignorable="d"
              x:Class="TemperatureControlApp.Views.VisitorsDetailPage"
              Title="Visitor Detail">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:ImageConverter x:Key="ImageConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Delete" Clicked="DeleteItem_Clicked" Command="{Binding DeleteCommand}" />
@@ -27,7 +34,7 @@
                     Placeholder="Gender" 
                     Text="{Binding VisitorSelected.Gender}" />
                 <Image
-                    Source="{Binding ImageBase64}" />
+                    Source="{Binding ImageBase64, Converter={StaticResource ImageConverter}}" />
                 <Button
                     Text="Take Picture"
                     Command="{Binding TakePictureCommand}" />

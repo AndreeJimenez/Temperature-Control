@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-            xmlns:converter="clr-namespace:TemperatureControlApp.Converters"
+             xmlns:converter="clr-namespace:TemperatureControlApp.Converters"
              mc:Ignorable="d"
              x:Class="TemperatureControlApp.Views.VisitorsListPage"
              Title="Visitors">
@@ -32,8 +32,18 @@
                 x:Name="VisitorsColView">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="5">
-                        <Image
+                    <StackLayout>
+                        <Grid Padding="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="3*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Image
                                 Grid.Row="0"
                                 Grid.Column="0"
                                 Grid.RowSpan="3"
@@ -42,27 +52,28 @@
                                 Aspect="AspectFill"
                                 VerticalOptions="CenterAndExpand"
                                 HorizontalOptions="CenterAndExpand"
-                                Source="{Binding ImageBase64}"
+                                Source="{Binding ImageBase64, Converter={StaticResource ImageConverter}}"
                                 d:Source="not_found" />
-                        <Label
+                            <Label
                                 Grid.Row="0"
                                 Grid.Column="1"
                                 Text="{Binding Name}"
                                 d:Text="Name"
                                 TextColor="#0B3C5D"
                                 FontSize="Large" />
-                        <Label
+                            <Label
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 TextColor="#0B3C5D"
                                 Text="{Binding Age}"
                                 d:Text="Age"/>
-                        <Label
+                            <Label
                                 Grid.Row="2"
                                 Grid.Column="1"
                                 TextColor="#0B3C5D"
                                 Text="{Binding Gender}"
                                 d:Text="Gender"/>
+                        </Grid>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected"></TapGestureRecognizer>
                         </StackLayout.GestureRecognizers>
