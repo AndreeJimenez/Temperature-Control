@@ -69,8 +69,15 @@ namespace TemperatureControlApp.ViewModels
 
         private async void SaveAction()
         {
-            await App.Database.SaveTemperatureAsync(TemperatureSelected);
-            TemperatureViewModel.GetInstance().LoadTemperatures();
+            if (TemperatureSelected.Date != null && TemperatureSelected.Latitude != 0 && TemperatureSelected.Longitude != 0 && TemperatureSelected.Comments != null)
+            {
+                await App.Database.SaveTemperatureAsync(TemperatureSelected);
+                TemperatureViewModel.GetInstance().LoadTemperatures();
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Validation Error", "You have to fill all the fields", "OK");
+            }
         }
 
         private async void DeleteAction()
@@ -99,14 +106,21 @@ namespace TemperatureControlApp.ViewModels
 
         private void MapAction()
         {
-            Application.Current.MainPage.Navigation.PushModalAsync(new TemperatureMapPage(new TemperatureModel
+            if (TemperatureSelected.Date != null && TemperatureSelected.Latitude != 0 && TemperatureSelected.Longitude != 0 && TemperatureSelected.Comments != null)
             {
-                ID = TemperatureSelected.ID,
-                Temperature = TemperatureSelected.Temperature,
-                Comments = TemperatureSelected.Comments,
-                Latitude = TemperatureSelected.Latitude,
-                Longitude = TemperatureSelected.Longitude,
-            }));
+                Application.Current.MainPage.Navigation.PushModalAsync(new TemperatureMapPage(new TemperatureModel
+                {
+                    ID = TemperatureSelected.ID,
+                    Temperature = TemperatureSelected.Temperature,
+                    Comments = TemperatureSelected.Comments,
+                    Latitude = TemperatureSelected.Latitude,
+                    Longitude = TemperatureSelected.Longitude,
+                }));
+            } 
+            else
+            {
+                Application.Current.MainPage.DisplayAlert("Validation Error", "You have to fill all the fields", "OK");
+            }
         }
     }
 }

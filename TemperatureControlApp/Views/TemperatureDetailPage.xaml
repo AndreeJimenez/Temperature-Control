@@ -35,7 +35,7 @@
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
         <ToolbarItem 
-            Text="Map" 
+            Text="Map"
             Command="{Binding MapCommand}" >
             <ToolbarItem.IconImageSource>
             <OnPlatform

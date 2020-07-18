@@ -29,7 +29,7 @@ namespace TemperatureControlApp.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PopAsync();
+                await Navigation.PopAsync();
         }
 
         async void DeleteItem_Clicked(object sender, EventArgs e)

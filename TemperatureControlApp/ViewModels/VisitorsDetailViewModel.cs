@@ -3,6 +3,7 @@ using TemperatureControlApp.Services;
 using Plugin.Media;
 using System;
 using Xamarin.Forms;
+using System.Threading.Tasks;
 
 namespace TemperatureControlApp.ViewModels
 {
@@ -62,8 +63,14 @@ namespace TemperatureControlApp.ViewModels
 
         private async void SaveAction()
         {
-            await App.Database.SaveVisitorAsync(VisitorSelected);
-            VisitorsListViewModel.GetInstance().LoadVisitors();
+            if(VisitorSelected.Name != null && VisitorSelected.ImageBase64 != null && VisitorSelected.Gender != null && VisitorSelected.Age > 0)
+            {
+                await App.Database.SaveVisitorAsync(VisitorSelected);
+                VisitorsListViewModel.GetInstance().LoadVisitors();
+            } else
+            {
+                await Application.Current.MainPage.DisplayAlert("Validation Error", "You have to fill all the fields", "OK");
+            }
         }
 
         private async void DeleteAction()
